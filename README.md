@@ -1,8 +1,8 @@
 tidyunderstat
 ================
 
-Functionality to help scrape [understat](https://understat.com/) and
-return tidy data for easier analysis.
+Scrape [understat](https://understat.com/) and return tidy data for
+easier analysis.
 
 ## Contents
 
@@ -14,5 +14,6 @@ return tidy data for easier analysis.
 
 While there is no official notice on their site condoning web scraping
 activity, Understat’s [support](support@understat.com) confirmed via
-e-mail on 8th November 2018 that the data is free to use. This may be
-subject to change. Also, be polite and attribute the source.
+e-mail on 8th November 2018 that the data is free to use for
+non-commercial purposes. This is subject to change. Also, be polite and
+attribute the source.
