@@ -1,6 +1,9 @@
 
 # setup -------------------------------------------------------------------
 
+# check requirements
+source("./src/requirements.R")
+
 # load packages
 library(rvest)
 library(jsonlite)
@@ -8,17 +11,11 @@ library(tidyverse)
 library(stringi)
 library(qdapRegex)
 
-# load functions
+# import scraper functions
 source("./src/functions.R")
-
-# test url
-url <- "https://understat.com/team/Newcastle_United/2018"
 
 
 # scrape -------------------------------------------------------------------
 
-# test scrape
-scrape_team_stats(team_url = url)
-
-
-
+# get player stats for Newcastle Utd
+scrape_team_players_stats(team_url = "https://understat.com/team/Newcastle_United/2018")
