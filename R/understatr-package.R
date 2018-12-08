@@ -13,6 +13,7 @@
 #' @import rvest stringr
 #' @importFrom stringi stri_unescape_unicode
 #' @importFrom jsonlite fromJSON
+#' @importFrom xml2 read_html
 #' @importFrom qdapRegex rm_square
 #' @importFrom tibble as_tibble
 #' @importFrom purrr map_dfr

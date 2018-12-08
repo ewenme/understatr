@@ -6,8 +6,6 @@
 #' @param team_name Team name as seen on understat
 #'
 #' @param year Year (or season) as seen on understat
-#'
-#'
 #' @export
 #' @examples \dontrun{
 #' construct_team_url(team_name = "Newcastle United, year = 2018)
@@ -31,8 +29,6 @@ construct_team_url <- function(team_name, year) {
 #' Retrieve player data for a team listed on understat.
 #'
 #' @param team_url Team's understat url
-#'
-#'
 #' @export
 #' @examples \dontrun{
 #' get_team_player_stats(team_url = "https://understat.com/team/Newcastle_United/2018")

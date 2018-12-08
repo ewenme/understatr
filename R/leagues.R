@@ -30,8 +30,6 @@ scrape_league_urls <- function() {
 #' Retrieve team data for a league listed on understat.
 #'
 #' @param league_url League's understat url
-#'
-#'
 #' @export
 #' @examples \dontrun{
 #' get_league_teams_stats(team_url = "https://understat.com/league/EPL/2018")
