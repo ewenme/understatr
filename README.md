@@ -1,4 +1,4 @@
-tidyunderstat
+understatr
 ================
 
 Scrape [understat](https://understat.com/) and return tidy data for
