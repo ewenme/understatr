@@ -1,14 +1,10 @@
-understatr
-================
 
-Scrape [understat](https://understat.com/) and return tidy data for
-easier analysis.
+# understatr <img alt="understatr Logo" title="discogger" align="right" src="man/figures/understatr_logo.png" width="100" style="float:right;width:100px;"/>
 
-## Contents
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
-  - `src/functions.R`: R functions to assist w/ scraping understat
-  - `src/requirements.R`: Things you will need for the scraping to work
-  - `src/scrape_ex`: A working example
+An R package to help with retrieving tidy
+[understat](https://understat.com/) data.
 
 ## Disclaimer
 
