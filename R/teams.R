@@ -12,7 +12,7 @@
 #' }
 construct_team_url <- function(team_name, year) {
 
-  home_url <- "https://understat.com/team"
+  home_url <- file.path(home_url, "team")
 
   # replace space w underscores
   team_name <- str_replace_all(team_name, pattern = " ", replacement = "_")

@@ -2,6 +2,8 @@
 # understatr <img alt="understatr Logo" title="discogger" align="right" src="man/figures/understatr_logo.png" width="100" style="float:right;width:100px;"/>
 
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![Travis build
+status](https://travis-ci.org/ewenme/understatr.svg?branch=master)](https://travis-ci.org/ewenme/understatr)
 
 An R package to help with retrieving tidy
 [understat](https://understat.com/) data.
@@ -56,8 +58,8 @@ get_team_player_stats(team_url = "https://understat.com/team/Newcastle_United/20
 
 ## Disclaimer
 
-While there is no official notice on their site condoning web scraping
-activity, Understat’s [support](support@understat.com) confirmed via
-e-mail on 8th November 2018 that the data is free to use for
-non-commercial purposes. This is subject to change. Also, be polite and
-attribute the source.
+While there is no official notice on the site condoning web scraping
+activity, Understat’s [support](support@understat.com) have previously
+confirmed (via e-mail exchange, 8th November 2018) that their data is
+free to use for non-commercial purposes. This stance is subject to
+change. Also, be polite and attribute the source.

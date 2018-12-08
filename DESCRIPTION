@@ -10,10 +10,10 @@ Imports:
     stringi,
     stringr,
     rvest,
+    xml2,
     jsonlite,
     qdapRegex,
     tibble,
     purrr,
-    xml2,
     magrittr
 RoxygenNote: 6.1.1

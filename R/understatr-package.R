@@ -10,12 +10,12 @@
 #' @name understatr
 #' @docType package
 #' @author Ewen Henderson (ewenhenderson@@gmail.com)
-#' @import rvest stringr
+#' @import rvest
+#' @importFrom tibble data_frame as_data_frame as_tibble
 #' @importFrom stringi stri_unescape_unicode
 #' @importFrom stringr str_replace_all str_subset
 #' @importFrom jsonlite fromJSON
 #' @importFrom xml2 read_html
 #' @importFrom qdapRegex rm_square
-#' @importFrom tibble as_tibble
 #' @importFrom purrr map_dfr
 NULL

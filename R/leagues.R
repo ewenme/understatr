@@ -1,27 +1,70 @@
-#' Get URLs for supported leagues
+#' Get information about currently supported leagues
 #'
-#' Retrieve URLs for leagues currently supported by understat.
+#' Retrieve useful metadata on leagues currently supported by understat.
 #'
 #' @export
 #' @examples \dontrun{
-#' scrape_league_urls()
+#' get_league_metadata()
 #' }
-get_league_urls <- function() {
-
-  home_url <- "https://understat.com/"
+get_leagues_metadata <- function() {
 
   # read understat home page
   home_page <- read_html(home_url)
 
-  # get league hyperlinks
-  league_urls <- home_page %>%
-    html_nodes(".link") %>%
-    html_attr('href')
+  # isolate league links
+  league_links <- html_nodes(home_page, ".link")
 
-  # construct full links
-  full_league_urls <- paste0(home_url, league_urls)
+  # get league URLs
+  league_urls <- html_attr(league_links, 'href')
 
-  return(full_league_urls)
+  # get league names
+  league_names <- html_text(league_links)
+
+  league_df <- map_dfr(
+    league_names, get_league_seasons)
+
+  return(as_tibble(league_df))
+
+}
+
+#' Get information about a leagues seasons
+#'
+#' Retrieve seasons on understat for a given league.
+#'
+#' @keywords internal
+#'
+#' @export
+get_league_seasons <- function(league_name) {
+
+  # form league name for url
+  league_name_fixed <- str_replace_all(
+    league_name, pattern = " ", replacement = "_"
+    )
+
+  # construct league url
+  league_url <- file.path(home_url, "league", league_name_fixed)
+
+  # read league page
+  league_page <- read_html(league_url)
+
+  # pick year link
+  year_link <- html_nodes(league_page, "#header :nth-child(2)")
+
+  # isolate year options
+  year_options <- html_nodes(year_link[2], "option")
+
+  # create league fields as df
+  seasons_df <- data.frame(
+    league_name = league_name,
+    year = html_attr(year_options, "value"),
+    season = html_text(year_options),
+    stringsAsFactors = FALSE
+  )
+
+  # create url per season
+  seasons_df$url <- file.path(league_url, seasons_df$year)
+
+  return(seasons_df)
 
 }
 
@@ -32,7 +75,7 @@ get_league_urls <- function() {
 #' @param league_url League's understat url
 #' @export
 #' @examples \dontrun{
-#' get_league_teams_stats(team_url = "https://understat.com/league/EPL/2018")
+#' get_league_teams_stats(league_url = "https://understat.com/league/EPL/2018")
 #' }
 get_league_teams_stats <- function(league_url) {
 

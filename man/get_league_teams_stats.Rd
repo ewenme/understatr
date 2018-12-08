@@ -14,6 +14,6 @@ Retrieve team data for a league listed on understat.
 }
 \examples{
 \dontrun{
-get_league_teams_stats(team_url = "https://understat.com/league/EPL/2018")
+get_league_teams_stats(league_url = "https://understat.com/league/EPL/2018")
 }
 }
