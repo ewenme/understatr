@@ -15,3 +15,8 @@ construct_team_url(team_name, year)
 Help with constructing the URL of a team's page
 on understat, for a given season (year).
 }
+\examples{
+\dontrun{
+construct_team_url(team_name = "Newcastle United", year = 2018)
+}
+}

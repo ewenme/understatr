@@ -8,7 +8,7 @@
 #' @param year Year (or season) as seen on understat
 #' @export
 #' @examples \dontrun{
-#' construct_team_url(team_name = "Newcastle United, year = 2018)
+#' construct_team_url(team_name = "Newcastle United", year = 2018)
 #' }
 construct_team_url <- function(team_name, year) {
 

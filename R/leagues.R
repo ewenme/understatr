@@ -6,7 +6,7 @@
 #' @examples \dontrun{
 #' scrape_league_urls()
 #' }
-scrape_league_urls <- function() {
+get_league_urls <- function() {
 
   home_url <- "https://understat.com/"
 
@@ -54,7 +54,8 @@ get_league_teams_stats <- function(league_url) {
   teams_data_df <- map_dfr(
     teams_data, function(x) {
       df <- x$history
-      df <- mutate(df, id = x$id, itle = x$title)
+      df$id <- x$id
+      df$title <- x$title
       df
     }
   )
