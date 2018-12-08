@@ -1,2 +1,5 @@
+^CODE_OF_CONDUCT\.md$
 ^understatr\.Rproj$
 ^\.Rproj\.user$
+^README\.Rmd$
+^README\.md$

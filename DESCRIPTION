@@ -1,12 +1,18 @@
 Package: understatr
-Title: What the Package Does (One Line, Title Case)
+Title: Get Tidy understat Data
 Version: 0.0.0.9000
-Authors@R: 
-    person(given = "First",
-           family = "Last",
-           role = c("aut", "cre"),
-           email = "first.last@example.com")
-Description: What the package does (one paragraph).
-License: What license it uses
+Authors@R: person("Ewen", "Henderson", email = "ewenhenderson@gmail.com", role = c("aut", "cre"))
+Description: Provides tools to retrieve understat <https://understat.com/> data in a tidy format.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Imports: 
+    stringi,
+    stringr,
+    rvest,
+    jsonlite,
+    qdapRegex,
+    tibble,
+    purrr,
+    dplyr
+RoxygenNote: 6.1.1
