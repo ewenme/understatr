@@ -17,20 +17,26 @@ An R package to help with retrieving tidy [understat](https://understat.com/) da
 
 `understatr` is not likely to be submitted to CRAN. Get it from GitHub:
 
-```{r install_dev, eval=FALSE}
+```{r, eval=FALSE}
 remotes::install_github('ewenme/understatr')
 ```
 
 ## Use
 
-```{r load}
+```{r}
 library(understatr)
 ```
 
-### Get player stats for a team's roster:
+### Check currently available leagues/seasons:
 
-```{r example}
-get_team_player_stats(team_url = "https://understat.com/team/Newcastle_United/2018")
+```{r}
+get_league_metadata()
+```
+
+### Get data for a team's playing squad:
+
+```{r}
+get_team_players_data(team_url = "https://understat.com/team/Newcastle_United/2018")
 ```
 
 ## Disclaimer

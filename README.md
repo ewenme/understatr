@@ -10,8 +10,7 @@ An R package to help with retrieving tidy
 
 ## Install
 
-`understatr` is not likely to be submitted to CRAN. Get it from
-GitHub:
+`understatr` is not likely to be submitted to CRAN. Get it from GitHub:
 
 ``` r
 remotes::install_github('ewenme/understatr')
@@ -23,10 +22,31 @@ remotes::install_github('ewenme/understatr')
 library(understatr)
 ```
 
-### Get player stats for a team’s roster:
+### Check currently available leagues/seasons:
 
 ``` r
-get_team_player_stats(team_url = "https://understat.com/team/Newcastle_United/2018")
+get_league_metadata()
+```
+
+    ## # A tibble: 30 x 4
+    ##    league_name year  season    url                                      
+    ##    <chr>       <chr> <chr>     <chr>                                    
+    ##  1 EPL         2018  2018/2019 https://understat.com/league/EPL/2018    
+    ##  2 EPL         2017  2017/2018 https://understat.com/league/EPL/2017    
+    ##  3 EPL         2016  2016/2017 https://understat.com/league/EPL/2016    
+    ##  4 EPL         2015  2015/2016 https://understat.com/league/EPL/2015    
+    ##  5 EPL         2014  2014/2015 https://understat.com/league/EPL/2014    
+    ##  6 La liga     2018  2018/2019 https://understat.com/league/La_liga/2018
+    ##  7 La liga     2017  2017/2018 https://understat.com/league/La_liga/2017
+    ##  8 La liga     2016  2016/2017 https://understat.com/league/La_liga/2016
+    ##  9 La liga     2015  2015/2016 https://understat.com/league/La_liga/2015
+    ## 10 La liga     2014  2014/2015 https://understat.com/league/La_liga/2014
+    ## # ... with 20 more rows
+
+### Get data for a team’s playing squad:
+
+``` r
+get_team_players_data(team_url = "https://understat.com/team/Newcastle_United/2018")
 ```
 
     ## # A tibble: 20 x 18

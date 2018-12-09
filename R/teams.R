@@ -31,9 +31,9 @@ construct_team_url <- function(team_name, year) {
 #' @param team_url Team's understat url
 #' @export
 #' @examples \dontrun{
-#' get_team_player_stats(team_url = "https://understat.com/team/Newcastle_United/2018")
+#' get_team_players_data(team_url = "https://understat.com/team/Newcastle_United/2018")
 #' }
-get_team_player_stats <- function(team_url) {
+get_team_players_data <- function(team_url) {
 
   # read team page
   team_page <- read_html(team_url)

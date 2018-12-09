@@ -2,10 +2,10 @@
 
 export("%>%")
 export(construct_team_url)
+export(get_league_metadata)
 export(get_league_seasons)
-export(get_league_teams_stats)
-export(get_leagues_metadata)
-export(get_team_player_stats)
+export(get_league_teams_data)
+export(get_team_players_data)
 import(rvest)
 importFrom(jsonlite,fromJSON)
 importFrom(magrittr,"%>%")

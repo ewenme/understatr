@@ -6,7 +6,7 @@
 #' @examples \dontrun{
 #' get_league_metadata()
 #' }
-get_leagues_metadata <- function() {
+get_league_metadata <- function() {
 
   # read understat home page
   home_page <- read_html(home_url)
@@ -68,16 +68,16 @@ get_league_seasons <- function(league_name) {
 
 }
 
-#' Get tean stats for a league's roster
+#' Get team stats for a league's roster
 #'
 #' Retrieve team data for a league listed on understat.
 #'
 #' @param league_url League's understat url
 #' @export
 #' @examples \dontrun{
-#' get_league_teams_stats(league_url = "https://understat.com/league/EPL/2018")
+#' get_league_teams_data(league_url = "https://understat.com/league/EPL/2018")
 #' }
-get_league_teams_stats <- function(league_url) {
+get_league_teams_data <- function(league_url) {
 
   # read league page
   league_page <- read_html(league_url)
@@ -103,6 +103,6 @@ get_league_teams_stats <- function(league_url) {
     }
   )
 
-  return(as_tibble(teams_data_df))
+  return(teams_data_df)
 
 }
