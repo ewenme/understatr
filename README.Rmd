@@ -15,7 +15,7 @@ An R package to help with retrieving tidy [understat](https://understat.com/) da
 
 ## Install
 
-`understatr` is not likely to be submitted to CRAN. Get it from GitHub:
+`understatr` is not likely to be submitted to CRAN. Get the latest development version from GitHub:
 
 ```{r, eval=FALSE}
 remotes::install_github('ewenme/understatr')
@@ -30,15 +30,32 @@ library(understatr)
 ### Check currently available leagues/seasons:
 
 ```{r}
-get_league_metadata()
+get_league_meta()
 ```
 
-### Get data for a team's playing squad:
+### Get stats for a team's playing squad in a league season:
 
 ```{r}
-get_team_players_data(team_url = "https://understat.com/team/Newcastle_United/2018")
+get_team_squad_stats(team_name = "Manchester City", year = 2018)
 ```
+
+### Get stats for a player across all seasons
+
+```{r}
+get_player_season_stats(player_id = 618)
+```
+
+
+## Issues
+
+If you encounter a clear bug, please file a minimal reproducible example on [GitHub](https://github.com/ewenme/understatr/issues). For questions and other discussion, try [stackoverflow](https://stackoverflow.com/) or [e-mail](ewenhenderson@gmail.com).
 
 ## Disclaimer
 
-While there is no official notice on the site condoning web scraping activity, Understat's [support](support@understat.com) have previously confirmed (via e-mail exchange, 8th November 2018) that their data is free to use for non-commercial purposes. This stance is subject to change. Also, be polite and attribute the source.
+While there is no official notice on the site condoning web scraping activity, Understat's [support](support@understat.com) have previously confirmed (via e-mail exchange, 8th November 2018) that their data is free to use for non-commercial purposes. This stance is subject to change. 
+
+Also, be polite and attribute the source.
+
+---
+Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+By participating in this project you agree to abide by its terms.

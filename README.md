@@ -10,7 +10,8 @@ An R package to help with retrieving tidy
 
 ## Install
 
-`understatr` is not likely to be submitted to CRAN. Get it from GitHub:
+`understatr` is not likely to be submitted to CRAN. Get the latest
+development version from GitHub:
 
 ``` r
 remotes::install_github('ewenme/understatr')
@@ -46,7 +47,7 @@ get_league_metadata()
 ### Get data for a team’s playing squad:
 
 ``` r
-get_team_players_data(team_url = "https://understat.com/team/Newcastle_United/2018")
+get_team_players_data(team_name = "Newcastle United", year = 2018)
 ```
 
     ## # A tibble: 20 x 18
@@ -76,10 +77,25 @@ get_team_players_data(team_url = "https://understat.com/team/Newcastle_United/20
     ## #   position <chr>, team_title <chr>, npg <chr>, npxG <chr>,
     ## #   xGChain <chr>, xGBuildup <chr>
 
+## Issues
+
+If you encounter a clear bug, please file a minimal reproducible example
+on [GitHub](https://github.com/ewenme/understatr/issues). For questions
+and other discussion, try [stackoverflow](https://stackoverflow.com/) or
+[e-mail](ewenhenderson@gmail.com).
+
 ## Disclaimer
 
 While there is no official notice on the site condoning web scraping
 activity, Understat’s [support](support@understat.com) have previously
 confirmed (via e-mail exchange, 8th November 2018) that their data is
 free to use for non-commercial purposes. This stance is subject to
-change. Also, be polite and attribute the source.
+change.
+
+Also, be polite and attribute the source.
+
+-----
+
+Please note that this project is released with a [Contributor Code of
+Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree
+to abide by its terms.

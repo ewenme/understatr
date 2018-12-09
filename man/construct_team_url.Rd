@@ -20,3 +20,4 @@ on understat, for a given season (year).
 construct_team_url(team_name = "Newcastle United", year = 2018)
 }
 }
+\keyword{internal}
