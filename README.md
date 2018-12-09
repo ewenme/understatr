@@ -26,7 +26,7 @@ library(understatr)
 ### Check currently available leagues/seasons:
 
 ``` r
-get_league_metadata()
+get_league_meta()
 ```
 
     ## # A tibble: 30 x 4
@@ -44,38 +44,47 @@ get_league_metadata()
     ## 10 La liga     2014  2014/2015 https://understat.com/league/La_liga/2014
     ## # ... with 20 more rows
 
-### Get data for a team’s playing squad:
+### Get stats for a team’s playing squad in a league season:
 
 ``` r
-get_team_players_data(team_name = "Newcastle United", year = 2018)
+get_team_squad_stats(team_name = "Manchester City", year = 2018)
 ```
 
-    ## # A tibble: 20 x 18
-    ##    id    player_name games time  goals xG    assists xA    shots key_passes
-    ##  * <chr> <chr>       <chr> <chr> <chr> <chr> <chr>   <chr> <chr> <chr>     
-    ##  1 813   Salomón Ro… 10    650   3     3.42… 1       0.47… 24    1         
-    ##  2 866   Joselu      12    467   2     1.52… 0       0.01… 15    2         
-    ##  3 875   Ciaran Cla… 8     580   2     0.37… 0       0.05… 4     2         
-    ##  4 47    Yoshinori … 10    369   1     0.97… 0       0.20… 5     3         
-    ##  5 689   Kenedy      13    1024  1     2.23… 1       0.74… 27    8         
-    ##  6 727   DeAndre Ye… 14    1251  1     1.06… 1       1.11… 5     13        
-    ##  7 770   Ayoze Pérez 15    1079  1     2.04… 1       2.04… 16    20        
-    ##  8 76    Fabian Sch… 6     483   0     0.22… 0       0.15… 5     2         
-    ##  9 461   Matt Ritch… 13    1041  0     1.50… 2       1.77… 15    19        
-    ## 10 708   Federico F… 12    1080  0     0.07… 1       0.37… 3     3         
-    ## 11 723   Ki Sung-yu… 8     589   0     0.05… 1       0.62… 2     10        
-    ## 12 766   Jamaal Las… 11    903   0     0.29… 0       0.49… 6     1         
-    ## 13 769   Jonjo Shel… 9     700   0     0.53… 1       1.53… 14    18        
-    ## 14 853   Paul Dumme… 10    900   0     0.11… 0       0.20… 4     3         
-    ## 15 1719  Javier Man… 5     328   0     0     0       0.02… 0     1         
-    ## 16 2344  Christian … 9     303   0     0.52… 0       0.64… 8     7         
-    ## 17 4471  Mohamed Di… 15    1337  0     0.82… 0       0.04… 12    1         
-    ## 18 6062  Isaac Hayd… 4     119   0     0     0       0.33… 0     1         
-    ## 19 6063  Jacob Murp… 7     278   0     0.03… 1       0.60… 2     1         
-    ## 20 6532  Martin Dub… 15    1350  0     0     0       0     0     0         
-    ## # ... with 8 more variables: yellow_cards <chr>, red_cards <chr>,
-    ## #   position <chr>, team_title <chr>, npg <chr>, npxG <chr>,
-    ## #   xGChain <chr>, xGBuildup <chr>
+    ## # A tibble: 21 x 20
+    ##    team_name  year player_name player_id games time  goals xG    assists
+    ##  * <chr>     <dbl> <chr>       <chr>     <chr> <chr> <chr> <chr> <chr>  
+    ##  1 Manchest…  2018 Raheem Ste… 618       13    1126  8     6.59… 6      
+    ##  2 Manchest…  2018 Sergio Agü… 619       13    986   8     8.76… 4      
+    ##  3 Manchest…  2018 Leroy Sané  337       14    821   6     4.91… 5      
+    ##  4 Manchest…  2018 David Silva 617       14    1094  5     4.40… 2      
+    ##  5 Manchest…  2018 Riyad Mahr… 750       15    753   5     4.56… 2      
+    ##  6 Manchest…  2018 Bernardo S… 3635      15    1233  4     3.45… 3      
+    ##  7 Manchest…  2018 Ilkay Günd… 314       11    568   3     2.29… 2      
+    ##  8 Manchest…  2018 Fernandinho 614       16    1418  1     0.95… 2      
+    ##  9 Manchest…  2018 Kyle Walker 638       13    1170  1     0.22… 0      
+    ## 10 Manchest…  2018 Aymeric La… 2498      16    1351  1     1.56… 0      
+    ## # ... with 11 more rows, and 11 more variables: xA <chr>, shots <chr>,
+    ## #   key_passes <chr>, yellow_cards <chr>, red_cards <chr>, position <chr>,
+    ## #   team_name.1 <chr>, npg <chr>, npxG <chr>, xGChain <chr>,
+    ## #   xGBuildup <chr>
+
+### Get stats for a player across all seasons:
+
+``` r
+get_player_season_stats(player_id = 618)
+```
+
+    ## # A tibble: 5 x 18
+    ##   player_name player_id team_name year  games goals shots time  xG   
+    ## * <chr>           <dbl> <chr>     <chr> <chr> <chr> <chr> <chr> <chr>
+    ## 1 Raheem Ste…       618 Manchest… 2018  13    8     32    1126  6.59…
+    ## 2 Raheem Ste…       618 Manchest… 2017  33    18    87    2594  18.8…
+    ## 3 Raheem Ste…       618 Manchest… 2016  33    7     64    2532  8.10…
+    ## 4 Raheem Ste…       618 Manchest… 2015  31    6     52    1943  7.14…
+    ## 5 Raheem Ste…       618 Liverpool 2014  35    7     84    3059  8.78…
+    ## # ... with 9 more variables: assists <chr>, xA <chr>, key_passes <chr>,
+    ## #   yellow <chr>, red <chr>, npg <chr>, npxG <chr>, xGChain <chr>,
+    ## #   xGBuildup <chr>
 
 ## Issues
 

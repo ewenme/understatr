@@ -39,7 +39,7 @@ get_league_meta()
 get_team_squad_stats(team_name = "Manchester City", year = 2018)
 ```
 
-### Get stats for a player across all seasons
+### Get stats for a player across all seasons:
 
 ```{r}
 get_player_season_stats(player_id = 618)
