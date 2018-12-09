@@ -84,7 +84,7 @@ get_league_seasons <- function(league_name) {
   # create league fields as df
   seasons_df <- data.frame(
     league_name = league_name,
-    year = html_attr(year_options, "value"),
+    year = as.numeric(html_attr(year_options, "value")),
     season = html_text(year_options),
     stringsAsFactors = FALSE
   )
@@ -139,13 +139,18 @@ get_league_teams_stats <- function(league_name, year) {
 
   # add reference fields
   teams_data_df$league_name <- league_name
-  teams_data_df$year <- year
+  teams_data_df$year <- as.numeric(year)
 
   # reorder fields
   teams_data_df <- subset(
     teams_data_df,
     select = c(league_name, year, team_name, team_id, h_a:ppda_allowed.def)
     )
+
+  # fix col classes
+  teams_data_df <- type.convert(teams_data_df)
+  teams_data_df[] <- lapply(teams_data_df, function(x) if(is.factor(x)) as.character(x) else x)
+  teams_data_df$date <- as.Date(teams_data_df$date, "%Y-%m-%d")
 
   return(as_tibble(teams_data_df))
 

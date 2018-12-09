@@ -49,6 +49,10 @@ get_player_season_stats <- function(player_id) {
                yellow:xGBuildup)
   )
 
+  # fix col classes
+  player_data <- type.convert(player_data)
+  player_data[] <- lapply(player_data, function(x) if(is.factor(x)) as.character(x) else x)
+
   return(as_tibble(player_data))
 
 }
@@ -104,6 +108,11 @@ get_player_match_stats <- function(player_id) {
     select = c(player_name, player_id, year, goals:match_id,
                roster_id:xGBuildup)
   )
+
+  # fix col classes
+  player_data <- type.convert(player_data)
+  player_data[] <- lapply(player_data, function(x) if(is.factor(x)) as.character(x) else x)
+  player_data$date <- as.Date(player_data$date, "%Y-%m-%d")
 
   return(as_tibble(player_data))
 

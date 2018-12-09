@@ -65,8 +65,13 @@ get_team_squad_stats <- function(team_name, year) {
   # reorder fields
   players_data <- subset(
     players_data,
-    select = c(team_name, year, player_name, player_id, games:xGBuildup)
+    select = c(team_name, year, player_name, player_id, games:position,
+               npg:xGBuildup)
   )
+
+  # fix col classes
+  players_data <- type.convert(players_data)
+  players_data[] <- lapply(players_data, function(x) if(is.factor(x)) as.character(x) else x)
 
   return(as_tibble(players_data))
 
