@@ -30,18 +30,18 @@ get_league_meta()
 ```
 
     ## # A tibble: 30 x 4
-    ##    league_name year  season    url                                      
-    ##    <chr>       <chr> <chr>     <chr>                                    
-    ##  1 EPL         2018  2018/2019 https://understat.com/league/EPL/2018    
-    ##  2 EPL         2017  2017/2018 https://understat.com/league/EPL/2017    
-    ##  3 EPL         2016  2016/2017 https://understat.com/league/EPL/2016    
-    ##  4 EPL         2015  2015/2016 https://understat.com/league/EPL/2015    
-    ##  5 EPL         2014  2014/2015 https://understat.com/league/EPL/2014    
-    ##  6 La liga     2018  2018/2019 https://understat.com/league/La_liga/2018
-    ##  7 La liga     2017  2017/2018 https://understat.com/league/La_liga/2017
-    ##  8 La liga     2016  2016/2017 https://understat.com/league/La_liga/2016
-    ##  9 La liga     2015  2015/2016 https://understat.com/league/La_liga/2015
-    ## 10 La liga     2014  2014/2015 https://understat.com/league/La_liga/2014
+    ##    league_name  year season    url                                      
+    ##    <chr>       <dbl> <chr>     <chr>                                    
+    ##  1 EPL          2018 2018/2019 https://understat.com/league/EPL/2018    
+    ##  2 EPL          2017 2017/2018 https://understat.com/league/EPL/2017    
+    ##  3 EPL          2016 2016/2017 https://understat.com/league/EPL/2016    
+    ##  4 EPL          2015 2015/2016 https://understat.com/league/EPL/2015    
+    ##  5 EPL          2014 2014/2015 https://understat.com/league/EPL/2014    
+    ##  6 La liga      2018 2018/2019 https://understat.com/league/La_liga/2018
+    ##  7 La liga      2017 2017/2018 https://understat.com/league/La_liga/2017
+    ##  8 La liga      2016 2016/2017 https://understat.com/league/La_liga/2016
+    ##  9 La liga      2015 2015/2016 https://understat.com/league/La_liga/2015
+    ## 10 La liga      2014 2014/2015 https://understat.com/league/La_liga/2014
     ## # ... with 20 more rows
 
 ### Get stats for a team’s playing squad in a league season:
@@ -50,23 +50,22 @@ get_league_meta()
 get_team_squad_stats(team_name = "Manchester City", year = 2018)
 ```
 
-    ## # A tibble: 21 x 20
-    ##    team_name  year player_name player_id games time  goals xG    assists
-    ##  * <chr>     <dbl> <chr>       <chr>     <chr> <chr> <chr> <chr> <chr>  
-    ##  1 Manchest…  2018 Raheem Ste… 618       13    1126  8     6.59… 6      
-    ##  2 Manchest…  2018 Sergio Agü… 619       13    986   8     8.76… 4      
-    ##  3 Manchest…  2018 Leroy Sané  337       14    821   6     4.91… 5      
-    ##  4 Manchest…  2018 David Silva 617       14    1094  5     4.40… 2      
-    ##  5 Manchest…  2018 Riyad Mahr… 750       15    753   5     4.56… 2      
-    ##  6 Manchest…  2018 Bernardo S… 3635      15    1233  4     3.45… 3      
-    ##  7 Manchest…  2018 Ilkay Günd… 314       11    568   3     2.29… 2      
-    ##  8 Manchest…  2018 Fernandinho 614       16    1418  1     0.95… 2      
-    ##  9 Manchest…  2018 Kyle Walker 638       13    1170  1     0.22… 0      
-    ## 10 Manchest…  2018 Aymeric La… 2498      16    1351  1     1.56… 0      
-    ## # ... with 11 more rows, and 11 more variables: xA <chr>, shots <chr>,
-    ## #   key_passes <chr>, yellow_cards <chr>, red_cards <chr>, position <chr>,
-    ## #   team_name.1 <chr>, npg <chr>, npxG <chr>, xGChain <chr>,
-    ## #   xGBuildup <chr>
+    ## # A tibble: 21 x 19
+    ##    team_name  year player_name player_id games  time goals    xG assists
+    ##  * <chr>     <int> <chr>           <int> <int> <int> <int> <dbl>   <int>
+    ##  1 Manchest…  2018 Raheem Ste…       618    13  1126     8 6.60        6
+    ##  2 Manchest…  2018 Sergio Agü…       619    13   986     8 8.76        4
+    ##  3 Manchest…  2018 Leroy Sané        337    14   821     6 4.91        5
+    ##  4 Manchest…  2018 David Silva       617    14  1094     5 4.41        2
+    ##  5 Manchest…  2018 Riyad Mahr…       750    15   753     5 4.56        2
+    ##  6 Manchest…  2018 Bernardo S…      3635    15  1233     4 3.45        3
+    ##  7 Manchest…  2018 Ilkay Günd…       314    11   568     3 2.29        2
+    ##  8 Manchest…  2018 Fernandinho       614    16  1418     1 0.952       2
+    ##  9 Manchest…  2018 Kyle Walker       638    13  1170     1 0.223       0
+    ## 10 Manchest…  2018 Aymeric La…      2498    16  1351     1 1.57        0
+    ## # ... with 11 more rows, and 10 more variables: xA <dbl>, shots <int>,
+    ## #   key_passes <int>, yellow_cards <int>, red_cards <int>, position <chr>,
+    ## #   npg <int>, npxG <dbl>, xGChain <dbl>, xGBuildup <dbl>
 
 ### Get stats for a player across all seasons:
 
@@ -75,16 +74,16 @@ get_player_season_stats(player_id = 618)
 ```
 
     ## # A tibble: 5 x 18
-    ##   player_name player_id team_name year  games goals shots time  xG   
-    ## * <chr>           <dbl> <chr>     <chr> <chr> <chr> <chr> <chr> <chr>
-    ## 1 Raheem Ste…       618 Manchest… 2018  13    8     32    1126  6.59…
-    ## 2 Raheem Ste…       618 Manchest… 2017  33    18    87    2594  18.8…
-    ## 3 Raheem Ste…       618 Manchest… 2016  33    7     64    2532  8.10…
-    ## 4 Raheem Ste…       618 Manchest… 2015  31    6     52    1943  7.14…
-    ## 5 Raheem Ste…       618 Liverpool 2014  35    7     84    3059  8.78…
-    ## # ... with 9 more variables: assists <chr>, xA <chr>, key_passes <chr>,
-    ## #   yellow <chr>, red <chr>, npg <chr>, npxG <chr>, xGChain <chr>,
-    ## #   xGBuildup <chr>
+    ##   player_name player_id team_name  year games goals shots  time    xG
+    ## * <chr>           <int> <chr>     <int> <int> <int> <int> <int> <dbl>
+    ## 1 Raheem Ste…       618 Manchest…  2018    13     8    32  1126  6.60
+    ## 2 Raheem Ste…       618 Manchest…  2017    33    18    87  2594 18.8 
+    ## 3 Raheem Ste…       618 Manchest…  2016    33     7    64  2532  8.11
+    ## 4 Raheem Ste…       618 Manchest…  2015    31     6    52  1943  7.15
+    ## 5 Raheem Ste…       618 Liverpool  2014    35     7    84  3059  8.79
+    ## # ... with 9 more variables: assists <int>, xA <dbl>, key_passes <int>,
+    ## #   yellow <int>, red <int>, npg <int>, npxG <dbl>, xGChain <dbl>,
+    ## #   xGBuildup <dbl>
 
 ## Issues
 
