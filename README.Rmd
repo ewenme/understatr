@@ -30,19 +30,19 @@ library(understatr)
 ### Check currently available leagues/seasons:
 
 ```{r}
-get_league_meta()
+get_leagues_meta()
 ```
 
 ### Get stats for a team's playing squad in a league season:
 
 ```{r}
-get_team_squad_stats(team_name = "Manchester City", year = 2018)
+get_team_players_stats(team_name = "Manchester City", year = 2018)
 ```
 
 ### Get stats for a player across all seasons:
 
 ```{r}
-get_player_season_stats(player_id = 618)
+get_player_seasons_stats(player_id = 618)
 ```
 
 

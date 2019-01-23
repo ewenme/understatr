@@ -13,7 +13,7 @@
 #' @import rvest
 #' @importFrom tibble data_frame as_data_frame as_tibble
 #' @importFrom stringi stri_unescape_unicode
-#' @importFrom stringr str_replace_all str_subset
+#' @importFrom stringr str_replace_all str_subset str_glue
 #' @importFrom jsonlite fromJSON
 #' @importFrom xml2 read_html
 #' @importFrom qdapRegex rm_square

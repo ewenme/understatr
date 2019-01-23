@@ -2,7 +2,7 @@
 % Please edit documentation in R/leagues.R
 \name{get_league_teams_stats}
 \alias{get_league_teams_stats}
-\title{Get stats on a league's roster of teams}
+\title{Get stats on a league's teams for a given season}
 \usage{
 get_league_teams_stats(league_name, year)
 }
@@ -12,8 +12,7 @@ get_league_teams_stats(league_name, year)
 \item{year}{Year (season)}
 }
 \description{
-Retrieve data for all teams in a league season listed
-on understat.
+Retrieve data for all teams in a league season listed on understat.
 }
 \examples{
 \dontrun{

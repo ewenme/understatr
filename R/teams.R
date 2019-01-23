@@ -1,33 +1,43 @@
-#' Construct URL for a team's page
+#' Get information on a team's available seasons
 #'
-#' Help with constructing the URL of a team's page
-#' on understat, for a given season (year).
+#' Retrieve useful metadata on a team currently supported by understat.
 #'
-#' @param team_name Team name as seen on understat
-#' @param year Year (or season) as seen on understat
-#' @keywords internal
 #' @export
 #' @examples \dontrun{
-#' construct_team_url(team_name = "Newcastle United", year = 2018)
+#' get_team_meta(team_name = "Newcastle United")
 #' }
-construct_team_url <- function(team_name, year) {
+get_team_meta <- function(team_name) {
 
-  home_url <- file.path(home_url, "team")
+  team_url <- str_glue("https://understat.com/team/{team_name}")
 
-  # replace space w underscores
-  team_name <- str_replace_all(team_name, pattern = " ", replacement = "_")
+  # read understat team page
+  team_page <- read_html(team_url)
 
-  # construct team url
-  team_url <- paste(home_url, team_name, year, sep = "/")
+  # isolate league links
+  year_link <- html_nodes(team_page, "#header :nth-child(2)")
 
-  return(team_url)
+  # isolate year options
+  year_options <- html_nodes(year_link[2], "option")
+
+  # create league fields as df
+  team_df <- data.frame(
+    team_name = team_name,
+    year = as.numeric(html_attr(year_options, "value")),
+    season = html_text(year_options),
+    stringsAsFactors = FALSE
+  )
+
+  # create url per season
+  team_df$url <- file.path(team_url, team_df$year)
+
+  return(team_df)
 
 }
 
-#' Get stats for a team's playing squad
+
+#' Get stats for a team's players for a given season
 #'
-#' Retrieve data for all players in a team's season
-#' listed on understat.
+#' Retrieve data for all players in a team's season listed on understat.
 #'
 #' @param team_name Team name
 #' @param year Year (season)
@@ -35,10 +45,12 @@ construct_team_url <- function(team_name, year) {
 #' @examples \dontrun{
 #' get_team_squad_stats(team_name = "Newcastle United", year = 2018)
 #' }
-get_team_squad_stats <- function(team_name, year) {
+get_team_players_stats <- function(team_name, year) {
+
+  stopifnot(is.character(team_name))
 
   # construct team url
-  team_url <- construct_team_url(team_name = team_name, year = year)
+  team_url <- str_glue("https://understat.com/team/{team_name}/{year}")
 
   # read team page
   team_page <- read_html(team_url)
@@ -58,16 +70,9 @@ get_team_squad_stats <- function(team_name, year) {
     fromJSON()
 
   # add reference fields
-  players_data$year <- year
+  players_data$year <- as.numeric(year)
   names(players_data)[names(players_data) == 'team_title'] <- 'team_name'
   names(players_data)[names(players_data) == 'id'] <- 'player_id'
-
-  # reorder fields
-  players_data <- subset(
-    players_data,
-    select = c(team_name, year, player_name, player_id, games:position,
-               npg:xGBuildup)
-  )
 
   # fix col classes
   players_data <- type.convert(players_data)

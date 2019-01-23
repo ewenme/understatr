@@ -7,13 +7,12 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: 
+    tibble,
+    purrr,
     stringi,
     stringr,
     rvest,
     xml2,
     jsonlite,
-    qdapRegex,
-    tibble,
-    purrr,
-    magrittr
+    qdapRegex
 RoxygenNote: 6.1.1
