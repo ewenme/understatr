@@ -8,6 +8,8 @@
 #' }
 get_team_meta <- function(team_name) {
 
+  team_name <- str_replace_all(team_name, " ", "_")
+
   team_url <- str_glue("https://understat.com/team/{team_name}")
 
   # read understat team page
@@ -48,6 +50,8 @@ get_team_meta <- function(team_name) {
 get_team_players_stats <- function(team_name, year) {
 
   stopifnot(is.character(team_name))
+
+  team_name <- str_replace_all(team_name, " ", "_")
 
   # construct team url
   team_url <- str_glue("https://understat.com/team/{team_name}/{year}")
