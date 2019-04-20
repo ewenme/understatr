@@ -2,6 +2,8 @@
 #'
 #' Retrieve useful metadata on a team currently supported by understat.
 #'
+#' @param team_name Team name
+#'
 #' @export
 #' @examples \dontrun{
 #' get_team_meta(team_name = "Newcastle United")
@@ -70,6 +72,7 @@ get_team_players_stats <- function(team_name, year) {
     # pick out JSON string
     rm_square(extract = TRUE, include.markers = TRUE) %>%
     unlist() %>%
+    str_subset("\\[\\]", negate = TRUE) %>%
     # parse JSON
     fromJSON()
 

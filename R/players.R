@@ -26,6 +26,7 @@ get_player_seasons_stats <- function(player_id) {
     # pick out JSON string
     rm_square(extract = TRUE, include.markers = TRUE) %>%
     unlist() %>%
+    str_subset("\\[\\]", negate = TRUE) %>%
     # parse JSON
     fromJSON()
 
@@ -78,6 +79,7 @@ get_player_matches_stats <- function(player_id) {
     # pick out JSON string
     rm_square(extract = TRUE, include.markers = TRUE) %>%
     unlist() %>%
+    str_subset("\\[\\]", negate = TRUE) %>%
     # parse JSON
     fromJSON()
 

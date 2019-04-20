@@ -6,6 +6,9 @@
 \usage{
 get_team_meta(team_name)
 }
+\arguments{
+\item{team_name}{Team name}
+}
 \description{
 Retrieve useful metadata on a team currently supported by understat.
 }

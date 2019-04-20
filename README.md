@@ -51,18 +51,18 @@ get_team_players_stats(team_name = "Manchester City", year = 2018)
 ```
 
     ## # A tibble: 21 x 19
-    ##    player_id player_name games  time goals     xG assists    xA shots
-    ##        <int> <chr>       <int> <int> <int>  <dbl>   <int> <dbl> <int>
-    ##  1       618 Raheem Ste…    20  1670    10  9.16        7 7.23     40
-    ##  2       619 Sergio Agü…    19  1381    10 10.9         6 3.66     68
-    ##  3       337 Leroy Sané     21  1313     8  5.89        9 6.68     40
-    ##  4       617 David Silva    19  1363     6  5.41        2 6.24     33
-    ##  5       750 Riyad Mahr…    19   941     5  5.14        2 2.43     35
-    ##  6      3635 Bernardo S…    22  1782     5  4.76        6 4.90     32
-    ##  7      5543 Gabriel Je…    17   767     5  7.63        2 2.49     30
-    ##  8       314 Ilkay Günd…    17   957     4  3.20        2 2.59     24
-    ##  9       447 Kevin De B…     8   298     1  0.191       0 0.885     7
-    ## 10       614 Fernandinho    21  1839     1  1.40        3 2.45     25
+    ##    player_id player_name games  time goals    xG assists     xA shots
+    ##        <int> <chr>       <int> <int> <int> <dbl>   <int>  <dbl> <int>
+    ##  1       619 Sergio Agü…    28  2095    19 18.0        7  4.12     99
+    ##  2       618 Raheem Ste…    29  2338    17 14.4        9 10.3      67
+    ##  3       337 Leroy Sané     27  1709     9  6.84      10  7.56     53
+    ##  4      5543 Gabriel Je…    26   966     7 12.0        3  2.65     42
+    ##  5       617 David Silva    28  2073     6  7.89       6  9.01     47
+    ##  6       750 Riyad Mahr…    26  1243     6  6.36       3  4.38     50
+    ##  7      3635 Bernardo S…    31  2401     6  6.94       7  7.76     44
+    ##  8       314 Ilkay Günd…    26  1683     5  3.88       2  4.53     35
+    ##  9       447 Kevin De B…    17   917     2  1.31       2  6.65     28
+    ## 10      2498 Aymeric La…    30  2609     2  3.10       2  0.712    23
     ## # … with 11 more rows, and 10 more variables: key_passes <int>,
     ## #   yellow_cards <int>, red_cards <int>, position <chr>, team_name <chr>,
     ## #   npg <int>, npxG <dbl>, xGChain <dbl>, xGBuildup <dbl>, year <int>
@@ -76,7 +76,7 @@ get_player_seasons_stats(player_id = 618)
     ## # A tibble: 5 x 19
     ##   position games goals shots  time    xG assists    xA key_passes  year
     ##   <chr>    <int> <int> <int> <int> <dbl>   <int> <dbl>      <int> <int>
-    ## 1 AML         20    10    40  1670  9.16       7  7.23         44  2018
+    ## 1 AML         29    17    67  2338 14.4        9 10.3          59  2018
     ## 2 Sub         33    18    87  2594 18.8       11  8.84         55  2017
     ## 3 AMR         33     7    64  2532  8.11       6  5.50         46  2016
     ## 4 AML         31     6    52  1943  7.15       2  3.25         35  2015
