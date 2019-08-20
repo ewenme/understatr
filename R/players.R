@@ -3,6 +3,9 @@
 #' Retrieve season-level data for a player listed on understat.
 #'
 #' @param player_id Player ID
+#'
+#' @return a tibble
+#'
 #' @export
 #' @examples \dontrun{
 #' get_player_seasons_stats(player_id = 882)
@@ -10,31 +13,25 @@
 get_player_seasons_stats <- function(player_id) {
 
   # construct player url
-  player_url <- str_glue("https://understat.com/player/{player_id}")
+  player_url <- str_glue("{home_url}/player/{player_id}")
 
   # read player page
   player_page <- read_html(player_url)
 
-  player_data <- player_page %>%
-    # locate script tags
-    html_nodes("script") %>%
-    as.character() %>%
-    # isolate player data
-    str_subset("groupsData") %>%
-    # fix encoding
-    stri_unescape_unicode() %>%
-    # pick out JSON string
-    rm_square(extract = TRUE, include.markers = TRUE) %>%
-    unlist() %>%
-    str_subset("\\[\\]", negate = TRUE) %>%
-    # parse JSON
-    fromJSON()
+  # locate script tags
+  player_data <- get_script(player_page)
+
+  # isolate player data
+  player_data <- get_data_element(player_data, "groupsData")
+
+  # pick out JSON string
+  player_data <- fix_json(player_data)
+
+  # parse JSON
+  player_data <- fromJSON(player_data)
 
   # get player name
-  player_name <- player_page %>%
-    html_nodes(".header-wrapper:first-child") %>%
-    html_text() %>%
-    trimws()
+  player_name <- get_player_name(player_page)
 
   # add reference fields
   player_data$player_id <- as.numeric(player_id)
@@ -46,7 +43,7 @@ get_player_seasons_stats <- function(player_id) {
   player_data <- type.convert(player_data)
   player_data[] <- lapply(player_data, function(x) if(is.factor(x)) as.character(x) else x)
 
-  return(as_tibble(player_data))
+  as_tibble(player_data)
 
 }
 
@@ -56,9 +53,12 @@ get_player_seasons_stats <- function(player_id) {
 #' Retrieve match-level data for a player listed on understat.
 #'
 #' @param player_id Player ID
+#'
+#' @return a tibble
+#'
 #' @export
 #' @examples \dontrun{
-#' get_player_match_stats(player_id = 882)
+#' get_player_matches_stats(player_id = 882)
 #' }
 get_player_matches_stats <- function(player_id) {
 
@@ -68,26 +68,20 @@ get_player_matches_stats <- function(player_id) {
   # read player page
   player_page <- read_html(player_url)
 
-  player_data <- player_page %>%
-    # locate script tags
-    html_nodes("script") %>%
-    as.character() %>%
-    # isolate player data
-    str_subset("matchesData") %>%
-    # fix encoding
-    stri_unescape_unicode() %>%
-    # pick out JSON string
-    rm_square(extract = TRUE, include.markers = TRUE) %>%
-    unlist() %>%
-    str_subset("\\[\\]", negate = TRUE) %>%
-    # parse JSON
-    fromJSON()
+  # locate script tags
+  player_data <- get_script(player_page)
+
+  # isolate player data
+  player_data <- get_data_element(player_data, "matchesData")
+
+  # pick out JSON string
+  player_data <- fix_json(player_data)
+
+  # parse JSON
+  player_data <- fromJSON(player_data)
 
   # get player name
-  player_name <- player_page %>%
-    html_nodes(".header-wrapper:first-child") %>%
-    html_text() %>%
-    trimws()
+  player_name <- get_player_name(player_page)
 
   # add reference fields
   player_data$player_id <- player_id
@@ -107,6 +101,6 @@ get_player_matches_stats <- function(player_id) {
   player_data[] <- lapply(player_data, function(x) if(is.factor(x)) as.character(x) else x)
   player_data$date <- as.Date(player_data$date, "%Y-%m-%d")
 
-  return(as_tibble(player_data))
+  as_tibble(player_data)
 
 }

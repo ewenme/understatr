@@ -9,6 +9,9 @@ get_player_seasons_stats(player_id)
 \arguments{
 \item{player_id}{Player ID}
 }
+\value{
+a tibble
+}
 \description{
 Retrieve season-level data for a player listed on understat.
 }

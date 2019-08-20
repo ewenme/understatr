@@ -9,11 +9,14 @@ get_player_matches_stats(player_id)
 \arguments{
 \item{player_id}{Player ID}
 }
+\value{
+a tibble
+}
 \description{
 Retrieve match-level data for a player listed on understat.
 }
 \examples{
 \dontrun{
-get_player_match_stats(player_id = 882)
+get_player_matches_stats(player_id = 882)
 }
 }

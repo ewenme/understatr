@@ -11,11 +11,14 @@ get_team_players_stats(team_name, year)
 
 \item{year}{Year (season)}
 }
+\value{
+a tibble
+}
 \description{
 Retrieve data for all players in a team's season listed on understat.
 }
 \examples{
 \dontrun{
-get_team_squad_stats(team_name = "Newcastle United", year = 2018)
+get_team_players_stats(team_name = "Newcastle United", year = 2018)
 }
 }

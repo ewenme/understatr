@@ -57,8 +57,12 @@ get_leagues_meta <- function() {
   # get league names
   league_names <- html_text(league_links)
 
-  league_df <- map_dfr(
+  # get league data
+  leagues <- lapply(
     league_names, get_league_seasons)
+
+  # convert to df
+  league_df <- do.call("rbind", leagues)
 
   return(as_tibble(league_df))
 
@@ -97,7 +101,8 @@ get_league_teams_stats <- function(league_name, year) {
     # parse JSON
     fromJSON(simplifyDataFrame = TRUE, flatten = TRUE)
 
-  teams_data_df <- map_dfr(
+  # get teams data
+  teams_data <- lapply(
     teams_data, function(x) {
       df <- x$history
       df$team_id <- x$id
@@ -105,15 +110,18 @@ get_league_teams_stats <- function(league_name, year) {
       df
     })
 
+  # convert to df
+  teams_df <- do.call("rbind", teams_data)
+
   # add reference fields
-  teams_data_df$league_name <- league_name
-  teams_data_df$year <- as.numeric(year)
+  teams_df$league_name <- league_name
+  teams_df$year <- as.numeric(year)
 
   # fix col classes
-  teams_data_df <- type.convert(teams_data_df)
-  teams_data_df[] <- lapply(teams_data_df, function(x) if(is.factor(x)) as.character(x) else x)
-  teams_data_df$date <- as.Date(teams_data_df$date, "%Y-%m-%d")
+  teams_df <- type.convert(teams_df)
+  teams_df[] <- lapply(teams_df, function(x) if(is.factor(x)) as.character(x) else x)
+  teams_df$date <- as.Date(teams_df$date, "%Y-%m-%d")
 
-  return(as_tibble(teams_data_df))
+  return(as_tibble(teams_df))
 
 }

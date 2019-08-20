@@ -9,6 +9,9 @@ get_team_meta(team_name)
 \arguments{
 \item{team_name}{Team name}
 }
+\value{
+a tibble
+}
 \description{
 Retrieve useful metadata on a team currently supported by understat.
 }

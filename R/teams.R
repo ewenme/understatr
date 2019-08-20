@@ -4,6 +4,8 @@
 #'
 #' @param team_name Team name
 #'
+#' @return a tibble
+#'
 #' @export
 #' @examples \dontrun{
 #' get_team_meta(team_name = "Newcastle United")
@@ -12,7 +14,7 @@ get_team_meta <- function(team_name) {
 
   team_name <- str_replace_all(team_name, " ", "_")
 
-  team_url <- str_glue("https://understat.com/team/{team_name}")
+  team_url <- str_glue("{home_url}/team/{team_name}")
 
   # read understat team page
   team_page <- read_html(team_url)
@@ -34,7 +36,7 @@ get_team_meta <- function(team_name) {
   # create url per season
   team_df$url <- file.path(team_url, team_df$year)
 
-  return(team_df)
+  as_tibble(team_df)
 
 }
 
@@ -45,9 +47,12 @@ get_team_meta <- function(team_name) {
 #'
 #' @param team_name Team name
 #' @param year Year (season)
+#'
+#' @return a tibble
+#'
 #' @export
 #' @examples \dontrun{
-#' get_team_squad_stats(team_name = "Newcastle United", year = 2018)
+#' get_team_players_stats(team_name = "Newcastle United", year = 2018)
 #' }
 get_team_players_stats <- function(team_name, year) {
 
@@ -56,25 +61,22 @@ get_team_players_stats <- function(team_name, year) {
   team_name <- str_replace_all(team_name, " ", "_")
 
   # construct team url
-  team_url <- str_glue("https://understat.com/team/{team_name}/{year}")
+  team_url <- str_glue("{home_url}/team/{team_name}/{year}")
 
   # read team page
   team_page <- read_html(team_url)
 
-  players_data <- team_page %>%
-    # locate script tags
-    html_nodes("script") %>%
-    as.character() %>%
-    # isolate player data
-    str_subset("playersData") %>%
-    # fix encoding
-    stri_unescape_unicode() %>%
-    # pick out JSON string
-    rm_square(extract = TRUE, include.markers = TRUE) %>%
-    unlist() %>%
-    str_subset("\\[\\]", negate = TRUE) %>%
-    # parse JSON
-    fromJSON()
+  # locate script tags
+  players_data <- as.character(html_nodes(team_page, "script"))
+
+  # isolate player data
+  players_data <- get_data_element(players_data, "playersData")
+
+  # pick out JSON string
+  players_data <- fix_json(players_data)
+
+  # parse JSON
+  players_data <- fromJSON(players_data)
 
   # add reference fields
   players_data$year <- as.numeric(year)
@@ -85,6 +87,6 @@ get_team_players_stats <- function(team_name, year) {
   players_data <- type.convert(players_data)
   players_data[] <- lapply(players_data, function(x) if(is.factor(x)) as.character(x) else x)
 
-  return(as_tibble(players_data))
+  as_tibble(players_data)
 
 }
