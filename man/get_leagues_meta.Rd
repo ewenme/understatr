@@ -6,6 +6,9 @@
 \usage{
 get_leagues_meta()
 }
+\value{
+a tibble
+}
 \description{
 Retrieve useful metadata on leagues currently supported by understat.
 }

@@ -11,6 +11,9 @@ get_league_teams_stats(league_name, year)
 
 \item{year}{Year (season)}
 }
+\value{
+a tibble
+}
 \description{
 Retrieve data for all teams in a league season listed on understat.
 }

@@ -8,7 +8,7 @@
 get_league_seasons <- function(league_name) {
 
   # construct league url
-  league_url <- str_glue("https://understat.com/league/{league_name}")
+  league_url <- str_glue("{home_url}/league/{league_name}")
 
   # read league page
   league_page <- read_html(league_url)
@@ -40,6 +40,9 @@ get_league_seasons <- function(league_name) {
 #' Retrieve useful metadata on leagues currently supported by understat.
 #'
 #' @export
+#'
+#' @return a tibble
+#'
 #' @examples \dontrun{
 #' get_leagues_meta()
 #' }
@@ -64,7 +67,7 @@ get_leagues_meta <- function() {
   # convert to df
   league_df <- do.call("rbind", leagues)
 
-  return(as_tibble(league_df))
+  as_tibble(league_df)
 
 }
 
@@ -76,6 +79,7 @@ get_leagues_meta <- function() {
 #' @param league_name League name
 #' @param year Year (season)
 #' @export
+#' @return a tibble
 #' @examples \dontrun{
 #' get_league_teams_stats(league_name = "EPL", year = 2018)
 #' }
@@ -84,22 +88,23 @@ get_league_teams_stats <- function(league_name, year) {
   stopifnot(is.character(league_name))
 
   # construct league url
-  league_url <- str_glue("https://understat.com/league/{league_name}/{year}")
+  league_url <- str_glue("{home_url}/league/{league_name}/{year}")
 
   # read league page
   league_page <- read_html(league_url)
 
-  teams_data <- league_page %>%
-    # locate script tags
-    html_nodes("script") %>%
-    as.character() %>%
-    # isolate player data
-    str_subset("teamsData") %>%
-    # fix encoding
-    stri_unescape_unicode() %>%
-    sub(".*?\\'(.*)\\'.*", "\\1", .) %>%
-    # parse JSON
-    fromJSON(simplifyDataFrame = TRUE, flatten = TRUE)
+  # locate script tags
+  teams_data <- get_script(league_page)
+
+  # isolate player data
+  teams_data <- get_data_element(teams_data, "teamsData")
+
+  # pick out JSON string
+  teams_data <- sub(".*?\\'(.*)\\'.*", "\\1", teams_data)
+
+  # parse JSON
+  teams_data <- fromJSON(teams_data, simplifyDataFrame = TRUE,
+                          flatten = TRUE)
 
   # get teams data
   teams_data <- lapply(
@@ -122,6 +127,6 @@ get_league_teams_stats <- function(league_name, year) {
   teams_df[] <- lapply(teams_df, function(x) if(is.factor(x)) as.character(x) else x)
   teams_df$date <- as.Date(teams_df$date, "%Y-%m-%d")
 
-  return(as_tibble(teams_df))
+  as_tibble(teams_df)
 
 }
