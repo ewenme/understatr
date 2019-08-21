@@ -104,3 +104,48 @@ get_player_matches_stats <- function(player_id) {
   as_tibble(player_data)
 
 }
+
+#' Get shotstats for a player
+#'
+#' Retrieve shot data for a player listed on understat.
+#'
+#' @param player_id Player ID
+#'
+#' @return a tibble
+#'
+#' @export
+#' @examples \dontrun{
+#' get_player_shots(player_id = 882)
+#' }
+get_player_shots <- function(player_id) {
+
+  # construct player url
+  player_url <- str_glue("{home_url}/player/{player_id}")
+
+  # read player page
+  player_page <- read_html(player_url)
+
+  # locate script tags
+  player_data <- get_script(player_page)
+
+  # isolate player data
+  player_data <- get_data_element(player_data, "shotsData")
+
+  # pick out JSON string
+  player_data <- fix_json(player_data)
+
+  # parse JSON
+  player_data <- fromJSON(player_data)
+
+  # add reference fields
+  player_data$player_id <- as.numeric(player_id)
+  names(player_data)[names(player_data) == 'season'] <- 'year'
+
+  # fix col classes
+  player_data <- type.convert(player_data)
+  player_data[] <- lapply(player_data, function(x) if(is.factor(x)) as.character(x) else x)
+  player_data$date <- as.Date(player_data$date, "%Y-%m-%d")
+
+  as_tibble(player_data)
+
+}
