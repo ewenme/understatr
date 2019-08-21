@@ -30,7 +30,7 @@ get_league_seasons <- function(league_name) {
   # create url per season
   seasons_df$url <- file.path(league_url, seasons_df$year)
 
-  return(seasons_df)
+  seasons_df
 
 }
 

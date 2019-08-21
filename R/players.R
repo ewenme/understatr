@@ -84,7 +84,7 @@ get_player_matches_stats <- function(player_id) {
   player_name <- get_player_name(player_page)
 
   # add reference fields
-  player_data$player_id <- player_id
+  player_data$player_id <- as.numeric(player_id)
   player_data$player_name <- player_name
   names(player_data)[names(player_data) == 'season'] <- 'year'
   names(player_data)[names(player_data) == 'id'] <- 'match_id'
