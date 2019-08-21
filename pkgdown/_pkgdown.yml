@@ -1,0 +1,40 @@
+destination: docs
+
+url: https://ewenme.github.io/understatr
+
+template:
+  params:
+    bootswatch: united
+
+home:
+  strip_header: true
+
+authors:
+  Ewen Henderson:
+    href: https://ewen.io
+navbar:
+  type: inverse
+  left:
+    - text: "Reference"
+      href: reference/index.html
+  right:
+  - icon: fa-github fa-lg
+    href: https://github.com/ewenme/understatr
+
+reference:
+  - title: "League data"
+    desc: "Functions for working with league data."
+    contents:
+      - starts_with("get_league")
+  - title: "Match data"
+    desc: "Functions for working with match data."
+    contents:
+      - starts_with("get_match")
+  - title: "Player data"
+    desc: "Functions for working with player data."
+    contents:
+      - starts_with("get_player")
+  - title: "Team data"
+    desc: "Functions for working with team data."
+    contents:
+      - starts_with("get_team")

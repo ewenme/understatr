@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://ewenme.github.io/understatr/index.html</loc>
+  </url>
+  <url>
+    <loc>https://ewenme.github.io/understatr/reference/get_league_seasons.html</loc>
+  </url>
+  <url>
+    <loc>https://ewenme.github.io/understatr/reference/get_league_teams_stats.html</loc>
+  </url>
+  <url>
+    <loc>https://ewenme.github.io/understatr/reference/get_leagues_meta.html</loc>
+  </url>
+  <url>
+    <loc>https://ewenme.github.io/understatr/reference/get_match_shots.html</loc>
+  </url>
+  <url>
+    <loc>https://ewenme.github.io/understatr/reference/get_match_stats.html</loc>
+  </url>
+  <url>
+    <loc>https://ewenme.github.io/understatr/reference/get_player_matches_stats.html</loc>
+  </url>
+  <url>
+    <loc>https://ewenme.github.io/understatr/reference/get_player_seasons_stats.html</loc>
+  </url>
+  <url>
+    <loc>https://ewenme.github.io/understatr/reference/get_team_meta.html</loc>
+  </url>
+  <url>
+    <loc>https://ewenme.github.io/understatr/reference/get_team_players_stats.html</loc>
+  </url>
+  <url>
+    <loc>https://ewenme.github.io/understatr/reference/understatr.html</loc>
+  </url>
+</urlset>
