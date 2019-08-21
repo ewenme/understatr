@@ -3,6 +3,7 @@
 export(get_league_seasons)
 export(get_league_teams_stats)
 export(get_leagues_meta)
+export(get_match_shots)
 export(get_match_stats)
 export(get_player_matches_stats)
 export(get_player_seasons_stats)

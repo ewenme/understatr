@@ -28,10 +28,10 @@ get_match_stats <- function(match_id) {
   match_data <- fromJSON(match_data)
 
   # get home data
-  home_data <- do.call(rbind.data.frame, foo$h)
+  home_data <- do.call(rbind.data.frame, match_data$h)
 
   # get away data
-  away_data <- do.call(rbind.data.frame, foo$a)
+  away_data <- do.call(rbind.data.frame, match_data$a)
 
   # bind data
   match_data <- rbind(home_data, away_data)
@@ -46,3 +46,45 @@ get_match_stats <- function(match_id) {
   as_tibble(match_data)
 }
 
+#' Get shots for a given match
+#'
+#' Retrieve data for all shots in a match listed on understat.
+#'
+#' @param match_id Match ID
+#' @export
+#' @return a tibble
+#' @examples \dontrun{
+#' get_match_shots(match_id = 11662)
+#' }
+get_match_shots <- function(match_id) {
+
+  match_url <- str_glue("{home_url}/match/{match_id}")
+
+  # read match page
+  match_page <- read_html(match_url)
+
+  # locate script tags
+  match_data <- get_script(match_page)
+
+  # isolate player data
+  shots_data <- get_data_element(match_data, "shotsData")
+
+  # pick out JSON string
+  shots_data <- fix_json(shots_data)
+
+  # parse JSON
+  shots_data <- lapply(shots_data, fromJSON)
+
+  # convert to df
+  shots_data <- do.call("rbind", shots_data)
+
+  # add reference fields
+  shots_data$match_id <- as.numeric(match_id)
+
+  # fix col classes
+  shots_data <- type.convert(shots_data)
+  shots_data[] <- lapply(shots_data, function(x) if(is.factor(x)) as.character(x) else x)
+
+  as_tibble(shots_data)
+
+}
