@@ -123,8 +123,7 @@ get_league_teams_stats <- function(league_name, year) {
   teams_df$year <- as.numeric(year)
 
   # fix col classes
-  teams_df <- type.convert(teams_df)
-  teams_df[] <- lapply(teams_df, function(x) if(is.factor(x)) as.character(x) else x)
+  teams_df <- type.convert(teams_df, as.is = TRUE)
   teams_df$date <- as.Date(teams_df$date, "%Y-%m-%d")
 
   as_tibble(teams_df)

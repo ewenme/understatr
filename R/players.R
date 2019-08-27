@@ -40,8 +40,7 @@ get_player_seasons_stats <- function(player_id) {
   names(player_data)[names(player_data) == 'season'] <- 'year'
 
   # fix col classes
-  player_data <- type.convert(player_data)
-  player_data[] <- lapply(player_data, function(x) if(is.factor(x)) as.character(x) else x)
+  player_data <- type.convert(player_data, as.is = TRUE)
 
   as_tibble(player_data)
 
@@ -97,8 +96,7 @@ get_player_matches_stats <- function(player_id) {
   )
 
   # fix col classes
-  player_data <- type.convert(player_data)
-  player_data[] <- lapply(player_data, function(x) if(is.factor(x)) as.character(x) else x)
+  player_data <- type.convert(player_data, as.is = TRUE)
   player_data$date <- as.Date(player_data$date, "%Y-%m-%d")
 
   as_tibble(player_data)
@@ -142,8 +140,7 @@ get_player_shots <- function(player_id) {
   names(player_data)[names(player_data) == 'season'] <- 'year'
 
   # fix col classes
-  player_data <- type.convert(player_data)
-  player_data[] <- lapply(player_data, function(x) if(is.factor(x)) as.character(x) else x)
+  player_data <- type.convert(player_data, as.is = TRUE)
   player_data$date <- as.Date(player_data$date, "%Y-%m-%d")
 
   as_tibble(player_data)

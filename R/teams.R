@@ -84,8 +84,7 @@ get_team_players_stats <- function(team_name, year) {
   names(players_data)[names(players_data) == 'id'] <- 'player_id'
 
   # fix col classes
-  players_data <- type.convert(players_data)
-  players_data[] <- lapply(players_data, function(x) if(is.factor(x)) as.character(x) else x)
+  players_data <- type.convert(players_data, as.is = TRUE)
 
   as_tibble(players_data)
 

@@ -40,8 +40,7 @@ get_match_stats <- function(match_id) {
   match_data$match_id <- as.numeric(match_id)
 
   # fix col classes
-  match_data <- type.convert(match_data)
-  match_data[] <- lapply(match_data, function(x) if(is.factor(x)) as.character(x) else x)
+  match_data <- type.convert(match_data, as.is = TRUE)
 
   as_tibble(match_data)
 }
@@ -82,8 +81,7 @@ get_match_shots <- function(match_id) {
   shots_data$match_id <- as.numeric(match_id)
 
   # fix col classes
-  shots_data <- type.convert(shots_data)
-  shots_data[] <- lapply(shots_data, function(x) if(is.factor(x)) as.character(x) else x)
+  shots_data <- type.convert(shots_data, as.is = TRUE)
 
   as_tibble(shots_data)
 
