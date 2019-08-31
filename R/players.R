@@ -34,7 +34,7 @@ get_player_seasons_stats <- function(player_id) {
   player_name <- get_player_name(player_page)
 
   # add reference fields
-  player_data$player_id <- as.numeric(player_id)
+  player_data$player_id <- player_id
   player_data$player_name <- player_name
   names(player_data)[names(player_data) == 'team'] <- 'team_name'
   names(player_data)[names(player_data) == 'season'] <- 'year'
@@ -83,7 +83,7 @@ get_player_matches_stats <- function(player_id) {
   player_name <- get_player_name(player_page)
 
   # add reference fields
-  player_data$player_id <- as.numeric(player_id)
+  player_data$player_id <- player_id
   player_data$player_name <- player_name
   names(player_data)[names(player_data) == 'season'] <- 'year'
   names(player_data)[names(player_data) == 'id'] <- 'match_id'
@@ -136,7 +136,7 @@ get_player_shots <- function(player_id) {
   player_data <- fromJSON(player_data)
 
   # add reference fields
-  player_data$player_id <- as.numeric(player_id)
+  player_data$player_id <- player_id
   names(player_data)[names(player_data) == 'season'] <- 'year'
 
   # fix col classes

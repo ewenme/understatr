@@ -37,7 +37,7 @@ get_match_stats <- function(match_id) {
   match_data <- rbind(home_data, away_data)
 
   # add reference fields
-  match_data$match_id <- as.numeric(match_id)
+  match_data$match_id <- match_id
 
   # fix col classes
   match_data <- type.convert(match_data, as.is = TRUE)
@@ -78,7 +78,7 @@ get_match_shots <- function(match_id) {
   shots_data <- do.call("rbind", shots_data)
 
   # add reference fields
-  shots_data$match_id <- as.numeric(match_id)
+  shots_data$match_id <- match_id
 
   # fix col classes
   shots_data <- type.convert(shots_data, as.is = TRUE)
