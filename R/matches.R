@@ -40,7 +40,7 @@ get_match_stats <- function(match_id) {
   match_data$match_id <- match_id
 
   # fix col classes
-  match_data <- type.convert(match_data, as.is = TRUE)
+  match_data <- utils::type.convert(match_data, as.is = TRUE)
 
   as_tibble(match_data)
 }

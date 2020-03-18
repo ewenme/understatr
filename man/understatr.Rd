@@ -3,7 +3,6 @@
 \docType{package}
 \name{understatr}
 \alias{understatr}
-\alias{understatr-package}
 \title{Get Tidy understat Data}
 \description{
 Provides tools to retrieve understat \url{https://understat.com/}
