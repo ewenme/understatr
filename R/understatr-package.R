@@ -17,5 +17,5 @@
 #' @importFrom jsonlite fromJSON
 #' @importFrom xml2 read_html
 #' @importFrom qdapRegex rm_square
-#' @importFrom utils type.convert
+#' @importFrom readr type_convert
 NULL
