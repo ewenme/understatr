@@ -88,7 +88,7 @@ get_league_teams_stats <- function(league_name, year) {
   stopifnot(is.character(league_name))
 
   # construct league url
-  league_url <- str_glue("{home_url}/league/{league_name}/{year}")
+  league_url <- utils::URLencode(str_glue("{home_url}/league/{league_name}/{year}"))
 
   # read league page
   league_page <- read_html(league_url)
