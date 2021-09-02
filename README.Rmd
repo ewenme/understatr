@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE, collapse = TRUE, comment = "#>", fig.path = "
 # understatr <img src="man/figures/logo.png" alt="" width="120" align="right" />
 
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![Travis build status](https://travis-ci.org/ewenme/understatr.svg?branch=master)](https://travis-ci.org/ewenme/understatr)
+[![R-CMD-check](https://github.com/ewenme/understatr/workflows/R-CMD-check/badge.svg)](https://github.com/ewenme/understatr/actions)
 
 ## Overview
 

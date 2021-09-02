@@ -8,7 +8,7 @@
 get_league_seasons <- function(league_name) {
 
   # construct league url
-  league_url <- str_glue("{home_url}/league/{league_name}")
+  league_url <- URLencode(str_glue("{home_url}/league/{league_name}"))
 
   # read league page
   league_page <- read_html(league_url)
